@@ -14,8 +14,14 @@ pygame.display.set_caption('Eerste game!')
 clock = pygame.time.Clock()
 running = True
 
-surface = pygame.Surface((100, 100))
+surface = pygame.Surface((800, 400))
 surface.fill("blue")
+
+pijp = pygame.Surface((50, 300))
+pijp.fill("green")
+
+flappybird = pygame.Surface((25, 25))
+flappybird.fill("yellow")
 
 while running:
 
@@ -24,6 +30,13 @@ while running:
       running = False
 
   screen.blit(surface, (0, 0))
-  
+  screen.blit(pijp, (175,-100))
+  screen.blit(pijp, (400,-200))
+  screen.blit(pijp, (625,-50))
+  screen.blit(pijp, (175,300))
+  screen.blit(pijp, (400,200))
+  screen.blit(pijp, (625,350))
+  screen.blit(flappybird, (50, 175))
+
   pygame.display.update()
   clock.tick(60)
