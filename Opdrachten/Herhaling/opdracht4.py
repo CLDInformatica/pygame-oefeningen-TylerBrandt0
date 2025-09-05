@@ -37,7 +37,29 @@ print(mijnKwadraat)
 # Maak 5 functies die allemaal in een andere taal "Goedemorgen" printen.
 # Roep daarna elke functie minimaal 2 keer aan (callen) waardoor er minimaal 10 keer "Goedemorgen" naar de console wordt geprint!
 
+def Frans():
+  frans = "Bonjour"
+  print(frans)
+def Duits():
+  duits = "Guten morgen"
+  print(duits)
+def Spaans():
+  spaans = "Beunos dias"
+  print(spaans)
+def Nederlands():
+  nederlands = ("Goeiemorgen")
+  print(nederlands)
+def Engels():
+  engels = "Good morning"
+  print(engels)
 
-
-
-
+Frans()
+Frans()
+Duits()
+Duits()
+Spaans()
+Spaans()
+Nederlands()
+Nederlands()
+Engels()
+Engels()

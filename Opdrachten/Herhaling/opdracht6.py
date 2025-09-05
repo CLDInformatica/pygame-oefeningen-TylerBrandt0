@@ -11,3 +11,17 @@
 # Voer hierna de functie uit met verschillende inputs en bekijk de resultaten.
 # Let op: Het is verplicht om een functie te gebruiken!
 
+def rekenamchine(getal1, getal2, operatie):
+    if operatie == "+":
+        return getal1 + getal2
+    elif operatie == "-":
+        return getal1 - getal2
+    elif operatie == "*":
+        return getal1 * getal2
+    elif operatie == "/":
+        return getal1 // getal2
+    
+print(rekenamchine(2, 5, "*"))
+print(rekenamchine(23, 12, "-"))
+print(rekenamchine(6, 7, "+"))
+print(rekenamchine(30, 3, "/"))
