@@ -28,10 +28,11 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Voetbal game!')
 clock = pygame.time.Clock()
 running = True
-test_font = pygame.font.Font("Opdrachten/PyGame/Les2/fonts/horror.ttf", 50)
+test_font = pygame.font.Font("/workspaces/pygame-oefeningen-TylerBrandt0/Opdrachten/PyGame/Les2/fonts/Soccer.ttf", 50)
 
 voetbal_surface = pygame.image.load("Opdrachten/PyGame/Les2/graphics/voetbal.png")
-tekst_surface = test_font.render("Voetbal game", False, "green")
+speler_surface = pygame.image.load("/workspaces/pygame-oefeningen-TylerBrandt0/Opdrachten/PyGame/Les2/graphics/speler.png")
+tekst_surface = test_font.render("Score", False, "white")
 
 while running:
 
@@ -41,6 +42,7 @@ while running:
 
   screen.blit(tekst_surface, (200, 100))
   screen.blit(voetbal_surface, (200, 200))
-  
+  screen.blit(speler_surface, (200, 200))
+
   pygame.display.update()
   clock.tick(60)
