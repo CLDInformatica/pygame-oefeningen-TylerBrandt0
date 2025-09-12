@@ -33,11 +33,14 @@ running = True
 background_surface = pygame.Surface((800, 400))
 background_surface.fill("white")
 
+gameover = False
+
 weg_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/weg.png").convert()
 
 auto_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/auto.png").convert_alpha()
-auto_rect = auto_surface.get_rect(bottom = 350)
-
+auto_rect = auto_surface.get_rect(bottom = 270)
+tekst_font = test_font = pygame.font.Font("/workspaces/pygame-oefeningen-TylerBrandt0/Opdrachten/PyGame/Les4/graphics/game_over.ttf", 200)
+tekst = test_font.render("GAME OVER", False, "black")
 obstakel_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/obstakel.png").convert_alpha()
 obstakel_rect = obstakel_surface.get_rect(bottomleft = (625, 280))
 
@@ -48,13 +51,21 @@ while running:
       running = False
 
   screen.blit(background_surface, (0, 0))
-  screen.blit(weg_surface, (0, 75))
+  screen.blit(weg_surface, (0, 100))
   screen.blit(obstakel_surface, obstakel_rect)
   
+  if gameover == True:
+    auto_rect.left = 0
+    auto_rect.left -= 2
+    screen.blit(tekst, (200, 100))
+
   auto_rect.left += 2
   if auto_rect.left > 800:
     auto_rect.right = 0
   screen.blit(auto_surface, auto_rect)
+
+  if auto_rect.colliderect(obstakel_rect) == True:
+    gameover = True
 
   pygame.display.update()
   clock.tick(60)
