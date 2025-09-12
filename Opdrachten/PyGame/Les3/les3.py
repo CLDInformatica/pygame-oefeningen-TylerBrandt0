@@ -20,9 +20,12 @@ running = True
 
 background_surface = pygame.Surface((800, 400))
 background_surface.fill("white")
+regen = pygame.image.load("/workspaces/pygame-oefeningen-TylerBrandt0/Opdrachten/PyGame/Les3/graphics/regen.webp")
 
 auto_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/auto.png").convert_alpha()
 auto_x_pos = 200
+auto_y_pos = 0
+
 
 while running:
 
@@ -31,9 +34,16 @@ while running:
       running = False
 
     screen.blit(background_surface, (0, 0))
-
     auto_x_pos += 1
     screen.blit(auto_surface, (auto_x_pos, 200))
+
+    auto_y_pos += 1
+    screen.blit(regen, (0, auto_y_pos))
+    screen.blit(regen, (300, auto_y_pos))
+    screen.blit(regen, (500, auto_y_pos))
+
+    if auto_x_pos > 825:
+      auto_x_pos = -100
 
     pygame.display.update()
     clock.tick(60)
