@@ -33,32 +33,40 @@ zwaartekracht = 0
 game_actief = True
 
 while True:
-  
   for event in pygame.event.get():
     if event.type == QUIT:
       pygame.quit()
-      sys.exit() 
-      
+      sys.exit()
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE and pikachu_rect.bottom >= 300:
+      if event.key == pygame.K_UP:
+        game_actief = True 
+
+  if game_actief == True:
+    if event.type == pygame.KEYDOWN:
+      if event.key == pygame.K_UP and pikachu_rect.bottom >= 300:
         zwaartekracht = -20
-
-  screen.blit(background_surface, (0, 0))
-  screen.blit(enemy_surface, enemy_rect)
-
-  zwaartekracht += 1
-  pikachu_rect.y += zwaartekracht
-
-  if pikachu_rect.bottom >= 300:
-    pikachu_rect.bottom = 300
-
-  keys = pygame.key.get_pressed()
-  if keys[pygame.K_RIGHT] and pikachu_rect.right + 6 <= 400:
-    pikachu_rect.x += 6
-  if keys[pygame.K_LEFT] and pikachu_rect.left - 6 >= 0:
-    pikachu_rect.x -= 6
   
-  screen.blit(pikachu_surface, pikachu_rect)
+    screen.blit(background_surface, (0, 0))
+    screen.blit(enemy_surface, enemy_rect)
 
-  pygame.display.update()
-  clock.tick(60)
+    zwaartekracht += 1
+    pikachu_rect.y += zwaartekracht
+
+    if pikachu_rect.bottom >= 300:
+      pikachu_rect.bottom = 300
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_RIGHT] and pikachu_rect.right + 6 <= 400:
+      pikachu_rect.x += 6
+    if keys[pygame.K_LEFT] and pikachu_rect.left - 6 >= 0:
+      pikachu_rect.x -= 6
+  
+    if pikachu_rect.colliderect(enemy_rect) == True:
+      game_actief = False
+      pikachu_rect.centerx = 200
+      pikachu_rect.bottom = 300
+    
+    screen.blit(pikachu_surface, pikachu_rect)
+
+    pygame.display.update()
+    clock.tick(60)

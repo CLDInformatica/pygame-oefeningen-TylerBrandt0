@@ -35,9 +35,19 @@ while True:
       pygame.quit()
       sys.exit() 
       
-    if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE:
-        zwaartekracht = -20
+    if pikachu_rect.bottom >= 300:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+          zwaartekracht = -20
+
+    if pikachu_rect.left > 0:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+          pikachu_rect.x -= 10
+    if pikachu_rect.right < 400:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
+          pikachu_rect.x += 10
 
   screen.blit(background_surface, (0, 0))
  
