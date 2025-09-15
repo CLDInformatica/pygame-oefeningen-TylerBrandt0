@@ -13,7 +13,7 @@ import pygame, sys
 from pygame.locals import QUIT
 
 def score():
-  time = pygame.time.get_ticks()
+  time = pygame.time.get_ticks()//1000
   score_surface = font.render(str(time), False, "orange")
   score_rect = score_surface.get_rect(center = (200, 100))
   screen.blit(score_surface, score_rect)
@@ -70,6 +70,7 @@ while True:
 
     if pikachu_rect.colliderect(enemy_rect):
       game_actief = False
+      score = 0
     
     screen.blit(pikachu_surface, pikachu_rect)
   else:
