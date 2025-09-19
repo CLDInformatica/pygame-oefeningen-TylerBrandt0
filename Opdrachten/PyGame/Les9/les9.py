@@ -23,8 +23,13 @@ speler_stil1_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler
 speler_stil2_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler_stil2.png").convert_alpha()
 animaties = [speler_stil1_surface, speler_stil2_surface]
 
+speler_stil1_surface_links = pygame.transform.flip(speler_stil1_surface, True, False)
+speler_stil2_surface_links = pygame.transform.flip(speler_stil2_surface, True, False)
+animaties_links = [speler_stil1_surface_links, speler_stil2_surface_links]
+
 index = 0
 speler_jump_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler_jump.png").convert_alpha()
+speler_jump_surface_links = pygame.transform.flip(speler_jump_surface, True, False)
 speler_rect = speler_stil1_surface.get_rect(midbottom = (200, 300))
 
 zwaartekracht = 0
@@ -37,9 +42,17 @@ while True:
       sys.exit() 
 
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE and speler_rect.bottom >= 300:
-        zwaartekracht = -20
-        
+      if event.key == pygame.K_UP and speler_rect.bottom >= 300:
+        zwaartekracht = -18
+        screen.blit(speler_jump_surface, speler_rect)
+
+  keys = pygame.key.get_pressed()
+  if keys[pygame.K_LEFT] and speler_rect.left > 0:
+    speler_rect.x -= 5
+  if keys[pygame.K_RIGHT] and speler_rect.right < 400:
+    speler_rect.x += 5
+
+
   screen.blit(background_surface, (0, 0))
 
   zwaartekracht += 1
@@ -52,8 +65,16 @@ while True:
   
   if index > len(animaties):
     index = 0
-    
-  screen.blit(animaties[int(index)], speler_rect)
+
+  if speler_rect.bottom < 300:
+    screen.blit(speler_jump_surface, speler_rect)
+  elif keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
+    if keys[pygame.K_LEFT]:
+      screen.blit(animaties_links[int(index)], speler_rect)
+    else:
+      screen.blit(animaties[int(index)], speler_rect)
+  else:
+    screen.blit(speler_stil1_surface, speler_rect)
 
   pygame.display.update()
   clock.tick(60)
